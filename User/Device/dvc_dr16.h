@@ -58,7 +58,15 @@ enum Enum_DR16_Status
     DR16_Status_DISABLE = 0,
     DR16_Status_ENABLE,
 };
-
+/**
+ * @brief 图传链路自定义控制器状态
+ *
+ */
+enum Enum_Image_Status
+{
+		Image_Status_DISABLE = 0,
+    Image_Status_ENABLE,
+};
 /**
  * @brief 遥控器数据更新状态
  *
@@ -111,6 +119,44 @@ struct Struct_Image_UART_Data
     uint16_t reserved;
 } __attribute__((packed)); 
 
+/**
+ * @brief 图传自定义控制器源数据
+ *
+ */
+struct Struct_Customer_controller
+{ 
+   int16_t Angle_1;
+   int8_t total_round1;
+   int16_t Angle_2; 
+   int8_t total_round2;
+   int16_t Angle_3;
+   int8_t total_round3;
+   int16_t Angle_4;
+   int8_t total_round4;
+   int16_t Angle_5;
+   int8_t total_round5;
+	
+} __attribute__((packed)); 
+
+struct Struct_Image_UART_Data_Customer_controller
+{ 
+//   int16_t Angle_1;
+//   int8_t total_round1;
+//   int16_t Angle_2; 
+//   int8_t total_round2;
+//   int16_t Angle_3;
+//   int8_t total_round3;
+//   int16_t Angle_4;
+//   int8_t total_round4;
+//   int16_t Angle_5;
+//   int8_t total_round5;
+   int8_t Data[30];
+} __attribute__((packed)); 
+
+struct Struct_Customize_Controller_Data
+{
+  float Angle[5];
+}__attribute__((packed));
 /**
  * @brief DR16源数据
  *
@@ -174,6 +220,8 @@ public:
     inline float Get_Mouse_X();
     inline float Get_Mouse_Y();
     inline float Get_Mouse_Z();
+    inline float Get_Angle_Image(int i);
+			inline void Set_Angle_Image(uint8_t num,float angle);
     inline Enum_DR16_Key_Status Get_Mouse_Left_Key();
     inline Enum_DR16_Key_Status Get_Mouse_Right_Key();
     inline Enum_DR16_Key_Status Get_Keyboard_Key_W();
@@ -192,15 +240,16 @@ public:
     inline Enum_DR16_Key_Status Get_Keyboard_Key_C();
     inline Enum_DR16_Key_Status Get_Keyboard_Key_V();
     inline Enum_DR16_Key_Status Get_Keyboard_Key_B();
-    
+    inline Enum_Image_Status Get_Image_Status();
     inline float Get_Yaw();
 
     void DR16_UART_RxCpltCallback(uint8_t *Rx_Data);
     void Image_UART_RxCpltCallback(uint8_t *Rx_Data);
-    
-    void TIM1msMod50_Alive_PeriodElapsedCallback();
 
-    
+    void TIM1msMod50_Alive_PeriodElapsedCallback();
+Struct_Customize_Controller_Data Customize_Controller_Data;
+
+    uint16_t  i;
 protected:
     //初始化相关常量
 
@@ -224,6 +273,11 @@ protected:
     Struct_Image_UART_Data Now_UART_Image_Rx_Data;
     Struct_Image_UART_Data Pre_UART_Image_Rx_Data;
 
+    Struct_Image_UART_Data_Customer_controller Now_UART_Image_Rx_Data_Customer_controller;
+    Struct_Image_UART_Data_Customer_controller Pre_UART_Image_Rx_Data_Customer_controller;
+		
+		Struct_Customer_controller Customer_controller;
+		
     //当前时刻的遥控器接收flag
     uint32_t DR16_Flag = 0;
     //前一时刻的遥控器接收flag
@@ -231,8 +285,14 @@ protected:
 
     //当前时刻的遥控器接收flag
     uint32_t Image_Flag = 0;
+		
     //前一时刻的遥控器接收flag
     uint32_t Pre_Image_Flag = 0;
+
+    //当前时刻的遥控器接收flag
+    uint32_t Image_Flag_Customer_controller = 0;
+    //前一时刻的遥控器接收flag
+    uint32_t Pre_Image_Flag_Customer_controller = 0;
 
     //遥控器50ms离线次数
     uint16_t Unline_Cnt = 0;
@@ -242,6 +302,8 @@ protected:
 
     //遥控器状态
     Enum_DR16_Status DR16_Status = DR16_Status_DISABLE;
+		//图传链路自定义控制器状态
+		Enum_Image_Status Image_Status=Image_Status_ENABLE;
     //遥控器数据更新状态
     Enum_DR16_Updata_Status DR16_Updata_Status = DR16_Status_DisUpdata;
     // DR16对外接口信息
@@ -250,7 +312,8 @@ protected:
     //写变量
 
     //读写变量
-
+    float Angle_Image[5];
+    int16_t total_round[5];
     //内部函数
 
     void Judge_Switch(Enum_DR16_Switch_Status *Switch, uint8_t Status, uint8_t Pre_Status);
@@ -258,6 +321,8 @@ protected:
     void Judge_Updata(Struct_DR16_UART_Data Pre_UART_Rx_Data,Struct_DR16_UART_Data Now_UART_Rx_Data);
     void DR16_Data_Process();
     void Image_Data_Process(uint8_t* __rx_buffer);
+    void Image_Data_Process_Customer_controller(uint8_t* __rx_buffer);
+    
 };
 
 /* Exported variables --------------------------------------------------------*/
@@ -273,7 +338,15 @@ Enum_DR16_Status Class_DR16::Get_DR16_Status()
 {
     return (DR16_Status);
 }
-
+/**
+ * @brief 获取自定义控制器在线状态
+ *
+ * @return Enum_DR16_Status 自定义控制器在线状态
+ */
+Enum_Image_Status Class_DR16::Get_Image_Status()
+{
+return (Image_Status);
+}
 /**
  * @brief 获取遥控器数据更新状态
  *
@@ -564,6 +637,14 @@ float Class_DR16::Get_Yaw()
     return (Data.Yaw);
 }
 
+float Class_DR16::Get_Angle_Image(int i)
+{
+    return (Angle_Image[i]);
+}
+void Class_DR16::Set_Angle_Image(uint8_t num,float angle)
+{
+   Angle_Image[num]=angle;
+}
 #endif
 
 /************************ COPYRIGHT(C) USTC-ROBOWALKER **************************/

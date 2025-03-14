@@ -17,13 +17,15 @@
 /* Exported macros -----------------------------------------------------------*/
 
 //#define CHASSIS
-#define GIMBAL
-
+//#define GIMBAL
+//#define CHASSIS_TASK
+#define GIMBAL_TASK
+//#define Manipulator
 
 #ifdef CHASSIS 	
 
     #define POWER_LIMIT
-    #ifdef POWER_LIMIT
+    #ifdef POWER_LIMIT                                                                                                                                                                                                                                                                                                                                                                                                                                
         //#define POWER_LIMIT_BUFFER_LOOP 
         ///#define POWER_LIMIT_NEW_CONTROL
         #define POWER_LIMIT_OLD_CONTROL

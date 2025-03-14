@@ -39,6 +39,10 @@
 
 extern uint16_t pwmVal;
 /* Exported function declarations --------------------------------------------*/
+struct Struct_Offline_Controller_Data
+{
+  float Angle[5];
+}__attribute__((packed));
 
 
 #ifdef __cplusplus

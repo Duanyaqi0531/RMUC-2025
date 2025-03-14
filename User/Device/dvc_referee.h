@@ -1212,8 +1212,8 @@ public:
     void Referee_UI_Draw_Circle(uint8_t __Robot_ID, Enum_Referee_UI_Group_Index __Group_Index, uint8_t __Serial, uint8_t __Index, uint32_t __Color, uint32_t __Line_Width, uint32_t __Center_X, uint32_t __Center_Y, uint32_t __Radius, Enum_Referee_UI_Operate_Type __Operate_Type);
     void Referee_UI_Draw_Float(uint8_t __Robot_ID, Enum_Referee_UI_Group_Index __Group_Index, uint8_t __Serial, uint8_t __Index, uint32_t __Color, uint32_t __Font_Size,uint32_t __Line_Width, uint32_t __Start_X, uint32_t __Start_Y, float __Number, Enum_Referee_UI_Operate_Type __Operate_Type);
     void Referee_UI_Draw_Integer(uint8_t __Robot_ID, Enum_Referee_UI_Group_Index __Group_Index, uint8_t __Serial, uint8_t __Index, uint32_t __Color, uint32_t __Font_Size,uint32_t __Line_Width, uint32_t __Start_X, uint32_t __Start_Y, int32_t __Number, Enum_Referee_UI_Operate_Type __Operate_Type);
-    void Referee_UI_Draw_String(uint8_t __Robot_ID, Enum_Referee_UI_Group_Index __Group_Index, uint32_t __Serial, uint8_t __Index, uint32_t __Color, uint32_t __Font_Size,uint32_t __Line_Width, uint32_t __Start_X, uint32_t __Start_Y, char *__String ,uint32_t __String_Length, Enum_Referee_UI_Operate_Type __Operate_Type);
-
+    void Referee_UI_Draw_String(uint8_t String_index,uint8_t __Robot_ID, Enum_Referee_UI_Group_Index __Group_Index, uint32_t __Serial, uint8_t __Index, uint32_t __Color, uint32_t __Font_Size,uint32_t __Line_Width, uint32_t __Start_X, uint32_t __Start_Y, char *__String ,uint32_t __String_Length, Enum_Referee_UI_Operate_Type __Operate_Type);
+  
     void Referee_UI_Packed_String();
 
     template <typename T>
@@ -1223,6 +1223,9 @@ public:
 
     void UART_RxCpltCallback(uint8_t *Rx_Data, uint16_t Size);
     void TIM1msMod50_Alive_PeriodElapsedCallback();
+
+    //自定义控制器
+    Struct_Referee_Tx_Data_Interaction_Custom_Controller Interaction_Custom_Controller;
 
 protected:
     //初始化相关常量
@@ -1285,6 +1288,7 @@ protected:
     //客户端接收小地图交互信息
     Struct_Referee_Tx_Data_Interaction_Client_Receive Interaction_Client_Receive;
 
+
     //写变量
 
     //图形删除交互信息
@@ -1298,7 +1302,7 @@ protected:
     //画七个图形交互信息
     Struct_Referee_Tx_Data_Interaction_Graphic_7 Interaction_Graphic_7;
     //画字符图形交互信息
-    Struct_Referee_Tx_Data_Interaction_Graphic_String Interaction_Graphic_String;
+    Struct_Referee_Tx_Data_Interaction_Graphic_String Interaction_Graphic_String[10];
     //雷达发送小地图交互信息
     Struct_Referee_Tx_Data_Interaction_Radar_Send Interaction_Radar_Send;
 
@@ -1352,7 +1356,7 @@ void Class_Referee::Referee_UI_Packed_Data(T* __data)
 	Append_CRC16_Check_Sum(UART_Manage_Object->Tx_Buffer,frame_length);  //一帧数据校验CRC16
 
     UART_Manage_Object->Tx_Length = frame_length;
-
+	//	memset(__data,0,sizeof(T));
     seq++;
 }
 
@@ -1427,39 +1431,85 @@ uint16_t Class_Referee::Get_HP(Enum_Referee_Data_Robots_ID Robots_ID)
     switch (Robots_ID)
     {
     case (Referee_Data_Robots_ID_RED_HERO_1):
+    {
         return (Game_Robot_HP.Red_Hero_1);
+    }
+    break;
     case (Referee_Data_Robots_ID_RED_ENGINEER_2):
+    {
         return (Game_Robot_HP.Red_Engineer_2);
+    }
+    break;
     case (Referee_Data_Robots_ID_RED_INFANTRY_3):
+    {
         return (Game_Robot_HP.Red_Infantry_3);
+    }
+    break;
     case (Referee_Data_Robots_ID_RED_INFANTRY_4):
+    {
         return (Game_Robot_HP.Red_Infantry_4);
+    }
+    break;
     case (Referee_Data_Robots_ID_RED_INFANTRY_5):
+    {
         return (Game_Robot_HP.Red_Infantry_5);
+    }
+    break;
     case (Referee_Data_Robots_ID_RED_SENTRY_7):
+    {
         return (Game_Robot_HP.Red_Sentry_7);
+    }
+    break;
     case (Referee_Data_Robots_ID_RED_OUTPOST_11):
+    {
         return (Game_Robot_HP.Red_Outpost_11);
+    }
+    break;
     case (Referee_Data_Robots_ID_RED_BASE_10):
+    {
         return (Game_Robot_HP.Red_Base_10);
+    }
+    break;
     case (Referee_Data_Robots_ID_BLUE_HERO_1):
+    {
         return (Game_Robot_HP.Blue_Hero_1);
+    }
+    break;
     case (Referee_Data_Robots_ID_BLUE_ENGINEER_2):
+    {
         return (Game_Robot_HP.Blue_Engineer_2);
+    }
+    break;
     case (Referee_Data_Robots_ID_BLUE_INFANTRY_3):
+    {
         return (Game_Robot_HP.Blue_Infantry_3);
+    }
+    break;
     case (Referee_Data_Robots_ID_BLUE_INFANTRY_4):
+    {
         return (Game_Robot_HP.Blue_Infantry_4);
+    }
+    break;
     case (Referee_Data_Robots_ID_BLUE_INFANTRY_5):
+    {
         return (Game_Robot_HP.Blue_Infantry_5);
+    }
+    break;
     case (Referee_Data_Robots_ID_BLUE_SENTRY_7):
+    {
         return (Game_Robot_HP.Blue_Sentry_7);
+    }
+    break;
     case (Referee_Data_Robots_ID_BLUE_OUTPOST_11):
+    {
         return (Game_Robot_HP.Blue_Outpost_11);
+    }
+    break;
     case (Referee_Data_Robots_ID_BLUE_BASE_10):
+    {
         return (Game_Robot_HP.Blue_Base_10);
-    default:
-        return (Game_Robot_HP.Blue_Base_10); // 或者返回一个其他合适的默认值
+    }
+    break;
     }
 }
 
@@ -1474,13 +1524,20 @@ Enum_Referee_Data_Status Class_Referee::Get_Event_Supply_Status(uint8_t Supply_I
     switch (Supply_ID)
     {
     case (1):
-        return static_cast<Enum_Referee_Data_Status>(Event_Data.Supply_1_Status_Enum);
+    {
+        return (static_cast<Enum_Referee_Data_Status>(Event_Data.Supply_1_Status_Enum));
+    }
+    break;
     case (2):
-        return static_cast<Enum_Referee_Data_Status>(Event_Data.Supply_2_Status_Enum);
+    {
+        return (static_cast<Enum_Referee_Data_Status>(Event_Data.Supply_2_Status_Enum));
+    }
+    break;
     case (3):
-        return static_cast<Enum_Referee_Data_Status>(Event_Data.Supply_3_Status_Enum);
-    default:
-        return static_cast<Enum_Referee_Data_Status>(Event_Data.Supply_1_Status_Enum); // 
+    {
+        return (static_cast<Enum_Referee_Data_Status>(Event_Data.Supply_3_Status_Enum));
+    }
+    break;
     }
 }
 
@@ -1539,8 +1596,6 @@ Enum_Referee_Data_Status Class_Referee::Get_Event_Highland_Status(uint8_t Highla
         return (static_cast<Enum_Referee_Data_Status>(Event_Data.Highland_4_Status_Enum));
     }
     break;
-    default :
-	    return (static_cast<Enum_Referee_Data_Status>(Event_Data.Highland_4_Status_Enum));
     }
 }
 
