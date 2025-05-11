@@ -282,6 +282,7 @@ public:
 	uint8_t DM4310_error_Flag;
 	uint8_t left_relay_flag=1;
 	uint8_t right_relay_flag=1;
+	uint8_t auto_init_flag=1;
 	float servo_angle_picth=100;
 	float servo_angle_yaw=90;
 	//1-5轴关节初始化角度+抬升机构长度

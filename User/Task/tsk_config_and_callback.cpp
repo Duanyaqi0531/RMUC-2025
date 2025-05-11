@@ -289,7 +289,7 @@ void Task1ms_TIM5_Callback()
 		}
 		else
 		{
-			if (!Robotarm.init_finished)
+			if ((Robotarm.init_finished==0)&&(Robotarm.auto_init_flag==1))
 			{Robotarm.init_finished = Robotarm.Robotarm_Calibration();
 			Robotarm.Robotarm_Resolution.Set_Status(Robotarm_Task_Status_Calibration);
 			Robotarm.Gimbal_Control_Key_Type=Gimbal_Control_Type_Key_Normal;
@@ -299,6 +299,7 @@ void Task1ms_TIM5_Callback()
 			Robotarm.TIM_Control_Callback();	
 			Robotarm.Output();
 			} 
+			
 			Robotarm.Judge_DR16_Control_Type();// 判断DR16控制数据来源
 			Robotarm.Control_Chassis_Task();//底盘控制   不校准完也可操纵底盘
 		}
@@ -548,8 +549,8 @@ void Task1ms_TIM5_Callback()
 			
 			case(Robotarm_Task_Status_Pick_Gold_3):
 			{
-						chariot.Auxiliary_Arm_Uplift_Y_Lift.Target_Up_Length=3.2;
-						chariot.Auxiliary_Arm_Uplift_Y_Right.Target_Up_Length=-3.2;
+						chariot.Auxiliary_Arm_Uplift_Y_Lift.Target_Up_Length=3.3;
+						chariot.Auxiliary_Arm_Uplift_Y_Right.Target_Up_Length=-3.3;
 						chariot.Auxiliary_Arm_Uplift_X_Lift.Target_Up_Length=26.5;
 						chariot.Auxiliary_Arm_Uplift_X_Right.Target_Up_Length=-26;
 						
@@ -557,11 +558,11 @@ void Task1ms_TIM5_Callback()
 			break;
 				case(Robotarm_Task_Status_Pick_Gold_4):
 			{
-						chariot.Auxiliary_Arm_Uplift_Y_Lift.Target_Up_Length=3.2;
-						chariot.Auxiliary_Arm_Uplift_Y_Right.Target_Up_Length=-3.2;
-				if(	(chariot.Auxiliary_Arm_Uplift_Y_Lift.Actual_Up_Length>2.7)&&(	chariot.Auxiliary_Arm_Uplift_Y_Right.Target_Up_Length<-2.7))
-				{chariot.Auxiliary_Arm_Uplift_X_Lift.Target_Up_Length=12;
-						chariot.Auxiliary_Arm_Uplift_X_Right.Target_Up_Length=-10;}
+						chariot.Auxiliary_Arm_Uplift_Y_Lift.Target_Up_Length=3.3;//3.2
+						chariot.Auxiliary_Arm_Uplift_Y_Right.Target_Up_Length=-3.3;
+				if(	(chariot.Auxiliary_Arm_Uplift_Y_Lift.Actual_Up_Length>3.0)&&(	chariot.Auxiliary_Arm_Uplift_Y_Right.Target_Up_Length<-3.0))
+				{chariot.Auxiliary_Arm_Uplift_X_Lift.Target_Up_Length=8;//12
+						chariot.Auxiliary_Arm_Uplift_X_Right.Target_Up_Length=-8;}
 						
 			}
 			break;
