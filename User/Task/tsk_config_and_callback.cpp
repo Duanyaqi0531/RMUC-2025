@@ -286,6 +286,11 @@ void Task1ms_TIM5_Callback()
 				Robotarm.Chassis.Target_Yaw=-Robotarm.Boardc_BMI.Get_Angle_YawTotal();
 				Robotarm.Arm_Uplift.Target_Up_Length=0;
 				Robotarm.Gimbal_Control_Key_Type=Gimbal_Control_Type_Key_Normal;
+				Robotarm.Relays.Set_Relay_State(Relays_1,Relays_Control_State_DISABLE);
+				Robotarm.Relays.Set_Relay_State(Relays_2,Relays_Control_State_DISABLE);
+				Robotarm.Relays.Set_Relay_State(Relays_3,Relays_Control_State_DISABLE);
+				Robotarm.Relays.Set_Relay_State(Relays_4,Relays_Control_State_DISABLE);
+				Robotarm.Relays.Set_Relay_State(Relays_5,Relays_Control_State_DISABLE);
 		}
 		else
 		{
@@ -296,6 +301,7 @@ void Task1ms_TIM5_Callback()
 			}
        else if (Robotarm.init_finished)
 			{
+					Robotarm.Arm_Uplift.Set_DJI_Motor_Control_Method(DJI_Motor_Control_Method_ANGLE);
 			Robotarm.TIM_Control_Callback();	
 			Robotarm.Output();
 			} 
@@ -323,8 +329,8 @@ void Task1ms_TIM5_Callback()
 //			  TIM_USB_PeriodElapsedCallback(&MiniPC_USB_Manage_Object);
 
 //    }
-		__HAL_TIM_SET_COMPARE(&htim8,TIM_CHANNEL_3,GetCCRFromAngle(Robotarm.servo_angle_picth));
-		__HAL_TIM_SET_COMPARE(&htim8,TIM_CHANNEL_2,GetCCRFromAngle(Robotarm.servo_angle_yaw));
+		__HAL_TIM_SET_COMPARE(&htim8,TIM_CHANNEL_2,GetCCRFromAngle(Robotarm.servo_angle_picth));
+		__HAL_TIM_SET_COMPARE(&htim8,TIM_CHANNEL_3,GetCCRFromAngle(Robotarm.servo_angle_yaw));
    
 }
 /**
@@ -473,18 +479,19 @@ enum Enum_Robotarm_Task_Status
 		Robotarm_Task_Status_Error=3,
 		Robotarm_Task_Status_Exchange=4,
 		Robotarm_Task_Status_Exchange_Pull=5,
-		Robotarm_Task_Status_Assist_Calibration =6,
+	  Robotarm_Task_Status_Assist_Calibration =6,
     Robotarm_Task_Status_Pick_Sliver_1=11,
 		Robotarm_Task_Status_Pick_Sliver_2=12,
 		Robotarm_Task_Status_Pick_Sliver_3=13,
-		Robotarm_Task_Status_Pick_Sliver_3_1=33,
+		Robotarm_Task_Status_Pick_Sliver_3_1=43,
 		Robotarm_Task_Status_Pick_Sliver_4=14,
 		Robotarm_Task_Status_Pick_Sliver_5=15,
 		Robotarm_Task_Status_Pick_Sliver_6=16,
-		Robotarm_Task_Status_Pick_Sliver_6_1=36,
+		Robotarm_Task_Status_Pick_Sliver_6_1=46,
 		Robotarm_Task_Status_Pick_Sliver_7=17,
 		Robotarm_Task_Status_Pick_Sliver_8=18,
 		Robotarm_Task_Status_Pick_Sliver_9=19,
+	
 		Robotarm_Task_Status_Pick_Gold_1=21,
 		Robotarm_Task_Status_Pick_Gold_2=22,
 		Robotarm_Task_Status_Pick_Gold_3=23,
@@ -492,10 +499,19 @@ enum Enum_Robotarm_Task_Status
 		Robotarm_Task_Status_Pick_Gold_5=25,
 		Robotarm_Task_Status_Pick_Gold_6=26,
 		Robotarm_Task_Status_Pick_Gold_7=27,
+		Robotarm_Task_Status_Pick_Gold_8=28,
+		Robotarm_Task_Status_Pick_Gold_9=29,
+		Robotarm_Task_Status_Pick_Gold_10=30,
+		Robotarm_Task_Status_Pick_Gold_11=31,
+		Robotarm_Task_Status_Pick_Gold_12=32,
+		Robotarm_Task_Status_Pick_Gold_13=33,
+		Robotarm_Task_Status_Pick_Gold_14=34,
+		Robotarm_Task_Status_Pick_Gold_15=35,
+		Robotarm_Task_Status_Pick_Gold_16=36,
+		
 	
 
 };
-
 uint16_t mod50_cnt = 0;
 uint8_t mod50_cnt_2 = 0;
 float angle_test;
@@ -577,10 +593,64 @@ void Task1ms_TIM5_Callback()
 			break;
 			case(Robotarm_Task_Status_Pick_Gold_6):
 			{
+						chariot.Auxiliary_Arm_Uplift_Y_Lift.Target_Up_Length=5.5;
+						chariot.Auxiliary_Arm_Uplift_Y_Right.Target_Up_Length=-5.5;
+						chariot.Auxiliary_Arm_Uplift_X_Lift.Target_Up_Length=0.5;
+						chariot.Auxiliary_Arm_Uplift_X_Right.Target_Up_Length=-0.5;
+						
+			}
+			break;
+			case(Robotarm_Task_Status_Pick_Gold_7):
+			{
 						chariot.Auxiliary_Arm_Uplift_Y_Lift.Target_Up_Length=1;
 						chariot.Auxiliary_Arm_Uplift_Y_Right.Target_Up_Length=-1;
 						chariot.Auxiliary_Arm_Uplift_X_Lift.Target_Up_Length=0.5;
 						chariot.Auxiliary_Arm_Uplift_X_Right.Target_Up_Length=-0.5;
+						
+			}
+			break;
+			case(Robotarm_Task_Status_Pick_Gold_8):
+			{
+						chariot.Auxiliary_Arm_Uplift_Y_Lift.Target_Up_Length=0.5;
+						chariot.Auxiliary_Arm_Uplift_Y_Right.Target_Up_Length=-0.5;
+						chariot.Auxiliary_Arm_Uplift_X_Lift.Target_Up_Length=23;
+						chariot.Auxiliary_Arm_Uplift_X_Right.Target_Up_Length=-0.5;
+						
+						
+			}
+			break;
+			case(Robotarm_Task_Status_Pick_Gold_9):
+			{
+					chariot.Auxiliary_Arm_Uplift_Y_Lift.Target_Up_Length=0.5;//3.2
+						chariot.Auxiliary_Arm_Uplift_Y_Right.Target_Up_Length=-0.5;
+						chariot.Auxiliary_Arm_Uplift_X_Lift.Target_Up_Length=2;//12
+						chariot.Auxiliary_Arm_Uplift_X_Right.Target_Up_Length=-0.5;
+						
+			}
+			break;
+			case(Robotarm_Task_Status_Pick_Gold_10):
+			{
+						chariot.Auxiliary_Arm_Uplift_Y_Lift.Target_Up_Length=0.5;
+						chariot.Auxiliary_Arm_Uplift_Y_Right.Target_Up_Length=-0.5;
+						chariot.Auxiliary_Arm_Uplift_X_Lift.Target_Up_Length=2.0;
+						chariot.Auxiliary_Arm_Uplift_X_Right.Target_Up_Length=-2.0;
+						
+			}
+			break;
+			case(Robotarm_Task_Status_Pick_Gold_11):
+			{
+						chariot.Auxiliary_Arm_Uplift_Y_Lift.Target_Up_Length=0.5;//3.2
+						chariot.Auxiliary_Arm_Uplift_Y_Right.Target_Up_Length=-1;
+						chariot.Auxiliary_Arm_Uplift_X_Lift.Target_Up_Length=2;//12
+						chariot.Auxiliary_Arm_Uplift_X_Right.Target_Up_Length=-14;
+			}
+			break;
+			case(Robotarm_Task_Status_Pick_Gold_12):
+			{
+						chariot.Auxiliary_Arm_Uplift_Y_Lift.Target_Up_Length=0.5;
+						chariot.Auxiliary_Arm_Uplift_Y_Right.Target_Up_Length=-0.5;
+						chariot.Auxiliary_Arm_Uplift_X_Lift.Target_Up_Length=2;
+						chariot.Auxiliary_Arm_Uplift_X_Right.Target_Up_Length=-2;
 						
 			}
 			break;

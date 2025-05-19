@@ -291,11 +291,12 @@ void Class_Robotarm::Control_Relays_Task()
 			break;
 			case Robotarm_Task_Status_Pick_Gold_1:
 			{
-			Relays.Set_Relay_State(Relays_1,Relays_Control_State_DISABLE);
-			//Relays.Set_Relay_State(Relays_2,Relays_Control_State_ENABLE);
-			Relays.Set_Relay_State(Relays_3,Relays_Control_State_DISABLE);
-//			Relays.Set_Relay_State(Relays_4,Relays_Control_State_ENABLE);
-//			Relays.Set_Relay_State(Relays_5,Relays_Control_State_ENABLE);
+					if(DR16.Control_Key==1)
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_ENABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_ENABLE);}
+			else
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_DISABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_DISABLE);}
 					if(left_relay_flag+right_relay_flag)
 			Relays.Set_Relay_State(Relays_2,Relays_Control_State_ENABLE);
 			else
@@ -313,11 +314,12 @@ void Class_Robotarm::Control_Relays_Task()
 			break;
 			case Robotarm_Task_Status_Pick_Gold_2:
 			{
-			Relays.Set_Relay_State(Relays_1,Relays_Control_State_DISABLE);
-			//Relays.Set_Relay_State(Relays_2,Relays_Control_State_ENABLE);
-			Relays.Set_Relay_State(Relays_3,Relays_Control_State_DISABLE);
-//			Relays.Set_Relay_State(Relays_4,Relays_Control_State_ENABLE);
-//			Relays.Set_Relay_State(Relays_5,Relays_Control_State_ENABLE);
+						if(DR16.Control_Key==1)
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_ENABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_ENABLE);}
+			else
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_DISABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_DISABLE);}
 					if(left_relay_flag+right_relay_flag)
 			Relays.Set_Relay_State(Relays_2,Relays_Control_State_ENABLE);
 			else
@@ -334,11 +336,12 @@ void Class_Robotarm::Control_Relays_Task()
 			break;
 			case Robotarm_Task_Status_Pick_Gold_3:
 			{
-			Relays.Set_Relay_State(Relays_1,Relays_Control_State_DISABLE);
-			//Relays.Set_Relay_State(Relays_2,Relays_Control_State_ENABLE);
-			Relays.Set_Relay_State(Relays_3,Relays_Control_State_DISABLE);
-//			Relays.Set_Relay_State(Relays_4,Relays_Control_State_ENABLE);
-//			Relays.Set_Relay_State(Relays_5,Relays_Control_State_ENABLE);
+					if(DR16.Control_Key==1)
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_ENABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_ENABLE);}
+			else
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_DISABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_DISABLE);}
 					if(left_relay_flag+right_relay_flag)
 			Relays.Set_Relay_State(Relays_2,Relays_Control_State_ENABLE);
 			else
@@ -355,11 +358,12 @@ void Class_Robotarm::Control_Relays_Task()
 			break;
 			case Robotarm_Task_Status_Pick_Gold_4:
 			{
-			Relays.Set_Relay_State(Relays_1,Relays_Control_State_DISABLE);
-			//Relays.Set_Relay_State(Relays_2,Relays_Control_State_ENABLE);
-			Relays.Set_Relay_State(Relays_3,Relays_Control_State_DISABLE);
-//			Relays.Set_Relay_State(Relays_4,Relays_Control_State_ENABLE);
-//			Relays.Set_Relay_State(Relays_5,Relays_Control_State_ENABLE);
+						if(DR16.Control_Key==1)
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_ENABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_ENABLE);}
+			else
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_DISABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_DISABLE);}
 					if(left_relay_flag+right_relay_flag)
 			Relays.Set_Relay_State(Relays_2,Relays_Control_State_ENABLE);
 			else
@@ -376,11 +380,200 @@ void Class_Robotarm::Control_Relays_Task()
 			break;
 			case Robotarm_Task_Status_Pick_Gold_5:
 			{
-			Relays.Set_Relay_State(Relays_1,Relays_Control_State_ENABLE);
+						if(DR16.Control_Key==1)
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_ENABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_ENABLE);}
+			else
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_DISABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_DISABLE);}
+					if(left_relay_flag+right_relay_flag)
 			Relays.Set_Relay_State(Relays_2,Relays_Control_State_ENABLE);
-			Relays.Set_Relay_State(Relays_3,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_2,Relays_Control_State_DISABLE);
+			if(left_relay_flag)
 			Relays.Set_Relay_State(Relays_4,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_4,Relays_Control_State_DISABLE);
+			if(right_relay_flag)
 			Relays.Set_Relay_State(Relays_5,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_5,Relays_Control_State_DISABLE);
+			}
+			break;
+			case Robotarm_Task_Status_Pick_Gold_6:
+			{
+						if(DR16.Control_Key==1)
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_ENABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_ENABLE);}
+			else
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_DISABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_DISABLE);}
+					if(left_relay_flag+right_relay_flag)
+			Relays.Set_Relay_State(Relays_2,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_2,Relays_Control_State_DISABLE);
+			if(left_relay_flag)
+			Relays.Set_Relay_State(Relays_4,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_4,Relays_Control_State_DISABLE);
+			if(right_relay_flag)
+			Relays.Set_Relay_State(Relays_5,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_5,Relays_Control_State_DISABLE);
+			}
+			break;
+			case Robotarm_Task_Status_Pick_Gold_7:
+			{
+						if(DR16.Control_Key==1)
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_ENABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_ENABLE);}
+			else
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_DISABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_DISABLE);}
+					if(left_relay_flag+right_relay_flag)
+			Relays.Set_Relay_State(Relays_2,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_2,Relays_Control_State_DISABLE);
+			if(left_relay_flag)
+			Relays.Set_Relay_State(Relays_4,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_4,Relays_Control_State_DISABLE);
+			if(right_relay_flag)
+			Relays.Set_Relay_State(Relays_5,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_5,Relays_Control_State_DISABLE);
+			}
+			break;
+			case Robotarm_Task_Status_Pick_Gold_8:
+			{
+						if(DR16.Control_Key==1)
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_ENABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_ENABLE);}
+			else
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_DISABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_DISABLE);}
+					if(left_relay_flag+right_relay_flag)
+			Relays.Set_Relay_State(Relays_2,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_2,Relays_Control_State_DISABLE);
+			if(left_relay_flag)
+			Relays.Set_Relay_State(Relays_4,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_4,Relays_Control_State_DISABLE);
+			if(right_relay_flag)
+			Relays.Set_Relay_State(Relays_5,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_5,Relays_Control_State_DISABLE);
+			}
+			break;
+			case Robotarm_Task_Status_Pick_Gold_9:
+			{
+						if(DR16.Control_Key==1)
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_ENABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_ENABLE);}
+			else
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_DISABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_DISABLE);}
+					if(left_relay_flag+right_relay_flag)
+			Relays.Set_Relay_State(Relays_2,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_2,Relays_Control_State_DISABLE);
+			if(left_relay_flag)
+			Relays.Set_Relay_State(Relays_4,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_4,Relays_Control_State_DISABLE);
+			if(right_relay_flag)
+			Relays.Set_Relay_State(Relays_5,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_5,Relays_Control_State_DISABLE);
+			}
+			break;
+			case Robotarm_Task_Status_Pick_Gold_10:
+			{
+						if(DR16.Control_Key==1)
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_ENABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_ENABLE);}
+			else
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_DISABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_DISABLE);}
+					if(left_relay_flag+right_relay_flag)
+			Relays.Set_Relay_State(Relays_2,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_2,Relays_Control_State_DISABLE);
+			if(left_relay_flag)
+			Relays.Set_Relay_State(Relays_4,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_4,Relays_Control_State_DISABLE);
+			if(right_relay_flag)
+			Relays.Set_Relay_State(Relays_5,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_5,Relays_Control_State_DISABLE);
+			}
+			break;
+			case Robotarm_Task_Status_Pick_Gold_11:
+			{
+						if(DR16.Control_Key==1)
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_ENABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_ENABLE);}
+			else
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_DISABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_DISABLE);}
+					if(left_relay_flag+right_relay_flag)
+			Relays.Set_Relay_State(Relays_2,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_2,Relays_Control_State_DISABLE);
+			if(left_relay_flag)
+			Relays.Set_Relay_State(Relays_4,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_4,Relays_Control_State_DISABLE);
+			if(right_relay_flag)
+			Relays.Set_Relay_State(Relays_5,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_5,Relays_Control_State_DISABLE);
+			}
+			break;
+			case Robotarm_Task_Status_Pick_Gold_12:
+			{
+						if(DR16.Control_Key==1)
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_ENABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_ENABLE);}
+			else
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_DISABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_DISABLE);}
+					if(left_relay_flag+right_relay_flag)
+			Relays.Set_Relay_State(Relays_2,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_2,Relays_Control_State_DISABLE);
+			if(left_relay_flag)
+			Relays.Set_Relay_State(Relays_4,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_4,Relays_Control_State_DISABLE);
+			if(right_relay_flag)
+			Relays.Set_Relay_State(Relays_5,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_5,Relays_Control_State_DISABLE);
+			}
+			break;
+			case Robotarm_Task_Status_Pick_Gold_13:
+			{
+						if(DR16.Control_Key==1)
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_ENABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_ENABLE);}
+			else
+			{			Relays.Set_Relay_State(Relays_1,Relays_Control_State_DISABLE);
+			Relays.Set_Relay_State(Relays_3,Relays_Control_State_DISABLE);}
+					if(left_relay_flag+right_relay_flag)
+			Relays.Set_Relay_State(Relays_2,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_2,Relays_Control_State_DISABLE);
+			if(left_relay_flag)
+			Relays.Set_Relay_State(Relays_4,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_4,Relays_Control_State_DISABLE);
+			if(right_relay_flag)
+			Relays.Set_Relay_State(Relays_5,Relays_Control_State_ENABLE);
+			else
+			Relays.Set_Relay_State(Relays_5,Relays_Control_State_DISABLE);
 			}
 			break;
 			case Robotarm_Task_Status_Exchange:
@@ -697,9 +890,9 @@ void Class_Robotarm::Control_Gimbal_Task()
 										{  memcpy(Jonit_AngleInit, Angle_On_The_Way, 6 * sizeof(float));}	
 								
 										if((DR16.Get_Keyboard_Key_Q() == DR16_Key_Status_PRESSED)&&(DR16.Get_Keyboard_Key_Shift() == DR16_Key_Status_PRESSED))
-										{Arm_Uplift.Target_Up_Length+=0.003;}
+										{Arm_Uplift.Target_Up_Length+=0.006;}
 										else if((DR16.Get_Keyboard_Key_Q() == DR16_Key_Status_PRESSED)&&(DR16.Get_Keyboard_Key_Ctrl() == DR16_Key_Status_PRESSED))
-										{Arm_Uplift.Target_Up_Length-=0.003;}
+										{Arm_Uplift.Target_Up_Length-=0.006;}
 										else 
 										{Arm_Uplift.Target_Up_Length=Arm_Uplift.Actual_Up_Length;}
 										Math_Constrain(&Arm_Uplift.Target_Up_Length,0.f,36.f);
@@ -850,7 +1043,7 @@ void Class_Robotarm::Control_Chassis_Task()
 				Robotarm.servo_angle_picth-=Robotarm.DR16.Get_Mouse_Y()*10.0f;
 				Robotarm.servo_angle_yaw-=Robotarm.DR16.Get_Mouse_X()*10.0f;
 				Math_Constrain(&Robotarm.servo_angle_yaw,60.f,120.f);
-				Math_Constrain(&Robotarm.servo_angle_picth,0.f,160.f);
+				Math_Constrain(&Robotarm.servo_angle_picth,0.f,130.f);
 				}
 
 		Chassis.TIM_PID_PeriodElapsedCallback();
@@ -868,7 +1061,7 @@ void Class_Robotarm::Control_Chassis_Task()
         }
 			if(Gimbal_Control_Key_Type==Gimbal_Control_Type_Key_Customize)
 			{Chassis.Chassis_Vx =chassis_velocity_x/1.8;
-			Chassis.Chassis_Vy =chassis_velocity_y/4.f;
+			Chassis.Chassis_Vy =chassis_velocity_y/6.f;
 		  Chassis.Chassis_Omega=chassis_omega;}
 			else if(Gimbal_Control_Key_Type==Gimbal_Control_Type_Key_FSM)
 			{
@@ -881,7 +1074,7 @@ void Class_Robotarm::Control_Chassis_Task()
 				else
 				{
 				Chassis.Chassis_Vx =chassis_velocity_x/1.5;
-				Chassis.Chassis_Vy =chassis_velocity_y/2.f;
+				Chassis.Chassis_Vy =chassis_velocity_y/3.f;
 				Chassis.Chassis_Omega=chassis_omega;
 				}
 			}else
@@ -894,12 +1087,12 @@ void Class_Robotarm::Control_Chassis_Task()
 	
     }
 		
-		if(auto_init_flag==0)
-		{
-			Chassis.Chassis_Vx =0;
-				Chassis.Chassis_Vy =0;
-				Chassis.Chassis_Omega=0;
-		}
+//		if(auto_init_flag==0)
+//		{
+//			Chassis.Chassis_Vx =0;
+//				Chassis.Chassis_Vy =0;
+//				Chassis.Chassis_Omega=0;
+//		}
 }
 void Class_Robotarm::TIM_Control_Callback()
 {
@@ -1479,13 +1672,21 @@ void Class_Robotarm_Resolution::Reload_Task_Status_PeriodElapsedCallback()
 					{Set_Status(Robotarm_Task_Status_Pick_Sliver_1);}
 					if(Robotarm->DR16.Get_Mouse_Right_Key()==DR16_Key_Status_PRESSED)//开始取金矿石
 					{Set_Status(Robotarm_Task_Status_Pick_Gold_1);}
+					if(Robotarm->DR16.Get_Keyboard_Key_G()==DR16_Key_Status_PRESSED)//大臂取金矿石
+					{Set_Status(Robotarm_Task_Status_Pick_Gold_5);}
 					}
 			}
 			break;
 			case(Robotarm_Task_Status_Pick_Gold_1):
 			{
-				Robotarm->Arm_Uplift.Target_Up_Length=25;
-				memcpy(Robotarm->Jonit_AngleInit, Robotarm->Angle_Pick_Gold_1, 6 * sizeof(float));
+				Robotarm->Arm_Uplift.Target_Up_Length=20;//25Angle_On_The_Way//Angle_Pick_Gold_1
+			//	memcpy(Robotarm->Jonit_AngleInit, Robotarm->Angle_On_The_Way, 6 * sizeof(float));
+				Robotarm->Jonit_AngleInit[0]=120;
+					Robotarm->Jonit_AngleInit[1]=0;
+					Robotarm->Jonit_AngleInit[2]=180;
+					Robotarm->Jonit_AngleInit[3]=0;
+					Robotarm->Jonit_AngleInit[4]=90;
+				
 				if(Math_Abs(Robotarm->Arm_Uplift.Actual_Up_Length-Robotarm->Arm_Uplift.Target_Up_Length)<2)
 				{
 				if(Robotarm->Robotarm_Angle_verification(Robotarm->Joint_World_Angle_Now,Robotarm->Jonit_AngleInit)==true)
@@ -1533,7 +1734,7 @@ void Class_Robotarm_Resolution::Reload_Task_Status_PeriodElapsedCallback()
 			break;
 			case(Robotarm_Task_Status_Pick_Gold_4)://这个状态辅助机构x轴回收一半
 			{
-				Robotarm->Arm_Uplift.Target_Up_Length=25;
+				Robotarm->Arm_Uplift.Target_Up_Length=20;
 				memcpy(Robotarm->Jonit_AngleInit, Robotarm->Angle_Pick_Gold_1, 6 * sizeof(float));
 				
 				if(Robotarm->Gimbal_Control_Type == Gimbal_Control_Type_DR16)//dr16
@@ -1590,6 +1791,14 @@ void Class_Robotarm_Resolution::Reload_Task_Status_PeriodElapsedCallback()
 							{
 								if(Robotarm->DR16.Get_Mouse_Right_Key()==DR16_Key_Status_PRESSED){
 								Set_Status(Robotarm_Task_Status_Pick_Gold_6);}
+								if(Robotarm->DR16.Get_Keyboard_Key_Q()==DR16_Key_Status_PRESSED)//往左侧放矿石
+								{
+									Set_Status(Robotarm_Task_Status_Pick_Gold_7);
+								}
+								if(Robotarm->DR16.Get_Keyboard_Key_E()==DR16_Key_Status_PRESSED)//往右侧放矿石
+								{
+									Set_Status(Robotarm_Task_Status_Pick_Gold_10);
+								}	
 								if(Robotarm->DR16.Get_Mouse_Left_Key()==DR16_Key_Status_PRESSED){
 								Robotarm->Arm_Uplift.Target_Up_Length+=3.f;
 								memcpy(Robotarm->Jonit_AngleInit, Robotarm->Angle_Pick_Gold_UP, 6 * sizeof(float));}
@@ -1604,9 +1813,117 @@ void Class_Robotarm_Resolution::Reload_Task_Status_PeriodElapsedCallback()
 				}else mod_yaw=0;
 			}
 			break;
+		
+			case Robotarm_Task_Status_Pick_Gold_7://准备往左放矿石
+			{
+				Robotarm->Arm_Uplift.Target_Up_Length=Robotarm->Angle_Place_Fisrt[5]-5;
+			//	memcpy(Robotarm->Jonit_AngleInit, Robotarm->Angle_Place_Fisrt, 6 * sizeof(float));
+				if(Math_Abs(Robotarm->Arm_Uplift.Actual_Up_Length-Robotarm->Arm_Uplift.Target_Up_Length)<1.5)
+				{			
+						Set_Status(Robotarm_Task_Status_Pick_Gold_8);
+				}
+			}
+			break;
+			case Robotarm_Task_Status_Pick_Gold_8://放矿石后落下
+			{
+				Robotarm->Arm_Uplift.Target_Up_Length=Robotarm->Angle_Place_Fisrt[5]-5;
+						memcpy(Robotarm->Jonit_AngleInit, Robotarm->Angle_Place_Fisrt, 6 * sizeof(float));
+		
+//				//等待指令
+					if(Robotarm->Gimbal_Control_Type == Gimbal_Control_Type_DR16)//dr16
+					{	
+						if(Robotarm->DR16.Get_Left_Switch()==DR16_Switch_Status_UP){
+						mod++;
+						if(mod==300)//按键消抖防止状态跳变
+						Set_Status(Robotarm_Task_Status_Pick_Gold_9);
+						}else mod=0;
+					}
+					else
+					{
+						if(Robotarm->DR16.Get_Mouse_Right_Key()==DR16_Key_Status_PRESSED){
+						mod++;
+						if(mod>=100)//按键消抖防止状态跳变
+						Set_Status(Robotarm_Task_Status_Pick_Gold_9);
+					}	else mod=0;
+					}
+			
+			}
+			break;
+			
+			case Robotarm_Task_Status_Pick_Gold_9:
+			{
+				memcpy(Robotarm->Jonit_AngleInit, Robotarm->Angle_Pick_Gold, 6 * sizeof(float));
+				Robotarm->Arm_Uplift.Target_Up_Length=18;
+				if(Math_Abs(Robotarm->Jonit_AngleInit[1]-Robotarm->Joint_World_Angle_Now[1])<10)
+				{				
+//				//等待指令，
+					Robotarm->Arm_Uplift.Target_Up_Length=Robotarm->Angle_Pick_Gold[5];
+					Set_Status(Robotarm_Task_Status_Pick_Gold_5);
+				}
+				
+			}break;
+			case Robotarm_Task_Status_Pick_Gold_10:
+			{
+				
+					Robotarm->Arm_Uplift.Target_Up_Length=Robotarm->Angle_Place_Fisrt[5]-6;
+				if(Math_Abs(Robotarm->Arm_Uplift.Actual_Up_Length-Robotarm->Arm_Uplift.Target_Up_Length)<1.5)
+				{			
+					if(Math_Abs(Robotarm->Jonit_AngleInit[1]-Robotarm->Joint_World_Angle_Now[1])<10)
+				{
+						Set_Status(Robotarm_Task_Status_Pick_Gold_11);
+				}
+				}
+
+			
+			}
+			break;
+			case Robotarm_Task_Status_Pick_Gold_11:
+			{
+			
+					Robotarm->Arm_Uplift.Target_Up_Length=Robotarm->Angle_Place_Second[5]-6;
+				memcpy(Robotarm->Jonit_AngleInit, Robotarm->Angle_Place_Second, 6 * sizeof(float));
+		
+//				//等待指令
+					if(Robotarm->Gimbal_Control_Type == Gimbal_Control_Type_DR16)//dr16
+					{	
+						if(Robotarm->DR16.Get_Left_Switch()==DR16_Switch_Status_UP){
+						mod++;
+						if(mod==300)//按键消抖防止状态跳变
+						Set_Status(Robotarm_Task_Status_Pick_Gold_12);
+						}else mod=0;
+					}
+					else
+					{
+						if(Robotarm->DR16.Get_Mouse_Right_Key()==DR16_Key_Status_PRESSED){
+						mod++;
+						if(mod>=100)//按键消抖防止状态跳变
+						Set_Status(Robotarm_Task_Status_Pick_Gold_12);
+					}	else mod=0;
+					}
+			
+			}break;
+			
+			case Robotarm_Task_Status_Pick_Gold_12:
+			{
+				memcpy(Robotarm->Jonit_AngleInit, Robotarm->Angle_Pick_Gold, 6 * sizeof(float));
+				Robotarm->Arm_Uplift.Target_Up_Length=18;
+				if(Math_Abs(Robotarm->Jonit_AngleInit[1]-Robotarm->Joint_World_Angle_Now[1])<10)
+				{				
+							Robotarm->Arm_Uplift.Target_Up_Length=Robotarm->Angle_Pick_Gold[5];
+					Set_Status(Robotarm_Task_Status_Pick_Gold_5);
+					
+				}
+			
+			
+			}break;
 			case Robotarm_Task_Status_Pick_Gold_6:
 			{
-				Robotarm->Arm_Uplift.Target_Up_Length=2;	
+				Robotarm->Arm_Uplift.Target_Up_Length=0.5;	
+//				Robotarm->Jonit_AngleInit[0]=120;
+//				Robotarm->Jonit_AngleInit[1]=10;
+//			  Robotarm->Jonit_AngleInit[2]=180;
+//				Robotarm->Jonit_AngleInit[3]=0;
+//			  Robotarm->Jonit_AngleInit[4]=90;
 				memcpy(Robotarm->Jonit_AngleInit, Robotarm->Angle_On_The_Way, 6 * sizeof(float));
 					if(Robotarm->DR16.Get_Keyboard_Key_R()==DR16_Key_Status_PRESSED)
 						{		
