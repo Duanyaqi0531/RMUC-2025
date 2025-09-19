@@ -382,7 +382,7 @@ void Class_DM_Motor_J4310::TIM_Process_PeriodElapsedCallback()
         uint8_t tmp_torque_7_0 = tmp_torque;
         memcpy(&CAN_Tx_Data[7], &tmp_torque_7_0, sizeof(uint8_t));
 
-        CAN_Send_Data(CAN_Manage_Object->CAN_Handler, static_cast<Enum_DM_Motor_ID>(CAN_ID) + 0xf0, CAN_Tx_Data, 8,CAN_ID_STD);
+        CAN_Send_Data(CAN_Manage_Object->CAN_Handler, static_cast<Enum_DM_Motor_ID>(CAN_ID) + 0x00, CAN_Tx_Data, 8,CAN_ID_STD);
     }
     break;
     case (DM_Motor_Control_Method_MIT_TORQUE):
@@ -414,7 +414,7 @@ void Class_DM_Motor_J4310::TIM_Process_PeriodElapsedCallback()
         uint8_t tmp_torque_7_0 = tmp_torque;
         memcpy(&CAN_Tx_Data[7], &tmp_torque_7_0, sizeof(uint8_t));
 
-        CAN_Send_Data(CAN_Manage_Object->CAN_Handler, static_cast<Enum_DM_Motor_ID>(CAN_ID) + 0xf0, CAN_Tx_Data, 8,CAN_ID_STD);
+        CAN_Send_Data(CAN_Manage_Object->CAN_Handler, static_cast<Enum_DM_Motor_ID>(CAN_ID) + 0x00, CAN_Tx_Data, 8,CAN_ID_STD);
     }
     break;
     case (DM_Motor_Control_Method_POSITION_OMEGA):

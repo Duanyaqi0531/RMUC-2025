@@ -1269,10 +1269,10 @@ bool Class_Robotarm::Motor_Calibration(Class_AK_Motor_80_6 &Motor,uint8_t num,fl
 {
 	static uint16_t count[2] = {0,0};
 	Motor.Set_AK_Motor_Control_Method(CAN_PACKET_SET_RPM);
-
+	Motor.Set_Target_Omega(Cali_Omega);
 	if(Motor.Get_Rx_Data() != 0)//如果收到反馈帧率 则进入校准
 	{
-		Motor.Set_Target_Omega(Cali_Omega);
+	
 		if(fabs(Motor.Get_Now_Torque()) >= 10.0f)
 		{
 			count[num - 1]++;

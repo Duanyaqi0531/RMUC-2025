@@ -245,7 +245,7 @@ public:
     inline float Get_Mouse_Y();
     inline float Get_Mouse_Z();
     inline float Get_Angle_Image(int i);
-			inline void Set_Angle_Image(uint8_t num,float angle);
+		inline void Set_Angle_Image(uint8_t num,float angle);
     inline Enum_DR16_Key_Status Get_Mouse_Left_Key();
     inline Enum_DR16_Key_Status Get_Mouse_Right_Key();
     inline Enum_DR16_Key_Status Get_Keyboard_Key_W();

@@ -98,11 +98,11 @@ void Class_MiniPC::Output_en(float *angle,float uplift_high,Enum_Exchange_Status
 	Pack_Tx_en.header= 0X5A;
 	Pack_Tx_en.status=exchange_status;
 	Pack_Tx_en.Joint_Uplift_Angle   = uplift_high;
-	Pack_Tx_en.Jonit_1_Angle        = angle[1];
-	Pack_Tx_en.Jonit_2_Angle        = angle[2];
-	Pack_Tx_en.Jonit_3_Angle        = angle[3];
+	Pack_Tx_en.Jonit_1_Angle        = angle[0];
+	Pack_Tx_en.Jonit_2_Angle        = angle[1];
+	Pack_Tx_en.Jonit_3_Angle        = angle[2];
 	Pack_Tx_en.Jonit_4_Angle        = angle[3];
-	Pack_Tx_en.Jonit_5_Angle        = angle[3]; 
+	Pack_Tx_en.Jonit_5_Angle        = angle[4]; 
 	Pack_Tx_en.crc16        = 0xffff;
 	memcpy(USB_Manage_Object->Tx_Buffer,&Pack_Tx_en,sizeof(Pack_Tx_en));
 	Append_CRC16_Check_Sum(USB_Manage_Object->Tx_Buffer,sizeof(Pack_Tx_en));

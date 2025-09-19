@@ -370,6 +370,7 @@ PinOutPanel.CurrentBGAView=Bottom
 PinOutPanel.RotationAngle=180
 ProjectManager.AskForMigrate=true
 ProjectManager.BackupPrevious=false
+ProjectManager.CompilerLinker=GCC
 ProjectManager.CompilerOptimize=6
 ProjectManager.ComputerToolchain=false
 ProjectManager.CoupleFile=true

@@ -78,7 +78,13 @@ void Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 	uint32_t temp_id;
 	if(CAN_RxMessage->Header.IDE == CAN_ID_STD)
 	{
-		temp_id = CAN_RxMessage->Header.StdId;
+		temp_id = CAN_RxMessage->Header.StdId;}
+			else if(CAN_RxMessage->Header.IDE == CAN_ID_EXT)
+	{
+		temp_id = CAN_RxMessage->Header.ExtId &0xff;
+      
+	}
+	
         switch (temp_id)
         {
             case (0x203):
@@ -96,25 +102,15 @@ void Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
                 Robotarm.Motor_Joint3.CAN_RxCpltCallback(CAN_RxMessage->Data);
             }
             break;
-        }
-	}
-	else if(CAN_RxMessage->Header.IDE == CAN_ID_EXT)
-	{
-		temp_id = CAN_RxMessage->Header.ExtId &0xff;
-        switch (temp_id)
-        {
-            case (0x04):
+						 case (0x04):
             {
                 Robotarm.Motor_Joint2.CAN_RxCpltCallback(CAN_RxMessage->Data);
             }
             break;
 
-          
-          
-				
-		}
-	}
-	
+        
+			}
+
 }
 
 
@@ -322,13 +318,13 @@ void Task1ms_TIM5_Callback()
     // 发送CAN数据
     TIM_CAN_PeriodElapsedCallback();
      //USB统一打包发送	
-//		if (TIM1msMod100 == 100)
-//    {
-//        TIM1msMod100 = 0;
-//			Robotarm.MiniPc.Output_en(Robotarm.Joint_World_Angle_Now,Robotarm.Arm_Uplift.Actual_Up_Length,Exchange_Status_ENABLE);
-//			  TIM_USB_PeriodElapsedCallback(&MiniPC_USB_Manage_Object);
+		if (TIM1msMod100 == 5)
+    {
+        TIM1msMod100 = 0;
+			Robotarm.MiniPc.Output_en(Robotarm.Joint_World_Angle_Now,Robotarm.Arm_Uplift.Actual_Up_Length,Exchange_Status_ENABLE);
+			  TIM_USB_PeriodElapsedCallback(&MiniPC_USB_Manage_Object);
 
-//    }
+    }
 		__HAL_TIM_SET_COMPARE(&htim8,TIM_CHANNEL_2,GetCCRFromAngle(Robotarm.servo_angle_picth));
 		__HAL_TIM_SET_COMPARE(&htim8,TIM_CHANNEL_3,GetCCRFromAngle(Robotarm.servo_angle_yaw));
    
