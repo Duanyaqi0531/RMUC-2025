@@ -412,11 +412,7 @@ protected:
 		const float Angle_Pick_Second[6]={110,0,70,0,0,5};
 		const float Angle_Place_Second[6]={110,0,70,0,0,20};
     const float Angle_Pick_Third[6]={90,120,150,0,0,5};
-//		const float Angle_Pick_Fisrt[6]={45,135,180,0,0,5};
-//		const float Angle_Place_Fisrt[6]={100,135,141,0,0,20};
-//		const float Angle_Pick_Second[6]={95,40,45,0,0,5};
-//		const float Angle_Place_Second[6]={110,0,70,0,0,20};
-//    const float Angle_Pick_Third[6]={90,120,150,0,0,5};
+
 //		
 		//取出金矿相关角度		
 		const float Angle_Pick_Gold[6]={120,45,115,0,90,5.0f};

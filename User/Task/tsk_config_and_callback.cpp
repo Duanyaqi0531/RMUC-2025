@@ -78,14 +78,8 @@ void Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 	uint32_t temp_id;
 	if(CAN_RxMessage->Header.IDE == CAN_ID_STD)
 	{
-		temp_id = CAN_RxMessage->Header.StdId;}
-			else if(CAN_RxMessage->Header.IDE == CAN_ID_EXT)
-	{
-		temp_id = CAN_RxMessage->Header.ExtId &0xff;
-      
-	}
-	
-        switch (temp_id)
+		temp_id = CAN_RxMessage->Header.StdId;
+		switch (temp_id)
         {
             case (0x203):
             { 
@@ -110,6 +104,38 @@ void Device_CAN1_Callback(Struct_CAN_Rx_Buffer *CAN_RxMessage)
 
         
 			}
+	}
+			else if(CAN_RxMessage->Header.IDE == CAN_ID_EXT)
+	{
+		temp_id = CAN_RxMessage->Header.ExtId &0xff;
+      switch (temp_id)
+        {
+            case (0x203):
+            { 
+               Robotarm.Motor_Joint4.CAN_RxCpltCallback(CAN_RxMessage->Data);
+            }
+            break;
+            case (0x202):
+            {
+               Robotarm.Motor_Joint5.CAN_RxCpltCallback(CAN_RxMessage->Data);
+            }
+            break;
+						case (0x10)://
+            {
+                Robotarm.Motor_Joint3.CAN_RxCpltCallback(CAN_RxMessage->Data);
+            }
+            break;
+						 case (0x04):
+            {
+                Robotarm.Motor_Joint2.CAN_RxCpltCallback(CAN_RxMessage->Data);
+            }
+            break;
+
+        
+			}
+	}
+	
+        
 
 }
 

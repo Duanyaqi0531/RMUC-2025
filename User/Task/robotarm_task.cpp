@@ -87,6 +87,7 @@ void Class_Robotarm::Init()
 }
 /***********************************校准完后机械臂控制逻辑*********************************************/
 float test_dm_o=3.0f;
+float test=-40;
 void Class_Robotarm::Output()
 {
 	#ifdef _CAN_PACKET_SET_POS_SPD
@@ -100,7 +101,7 @@ void Class_Robotarm::Output()
 	#endif
 
 	// 关节3 达妙电机
-	Motor_Joint3.Set_Target_Angle((Jonit_AngleInit[2]-93.f) * DEG_TO_RAD);
+	Motor_Joint3.Set_Target_Angle((Jonit_AngleInit[2]-test) * DEG_TO_RAD);
 	Motor_Joint3.Set_Target_Omega(test_dm_o);
 	Motor_Joint3.Set_DM_Control_Status(DM_Motor_Control_Status_ENABLE);
 
@@ -134,9 +135,9 @@ void Class_Robotarm::TIM_Robotarm_Task_PeriodElapsedCallback()
 
 	Robotarm.Set_Joint_World_Angle_Now(1,Motor_Joint1.Get_Now_Angle()-Robotarm.Get_Joint_Offset_Angle(1));
 	Robotarm.Set_Joint_World_Angle_Now(2,Motor_Joint2.Get_Now_Angle()-Robotarm.Get_Joint_Offset_Angle(2)+223);
-	Robotarm.Set_Joint_World_Angle_Now(3,Motor_Joint3.Get_Now_Angle());
-	Robotarm.Set_Joint_World_Angle_Now(4,Motor_Joint4.Get_Now_Angle()-Robotarm.Get_Joint_Offset_Angle(4));
-	Robotarm.Set_Joint_World_Angle_Now(5,Motor_Joint5.Get_Now_Angle()-Robotarm.Get_Joint_Offset_Angle(5));
+	Robotarm.Set_Joint_World_Angle_Now(3,Motor_Joint3.Get_Now_Angle()-40.f);
+	Robotarm.Set_Joint_World_Angle_Now(4,-(Motor_Joint4.Get_Now_Angle()-Robotarm.Get_Joint_Offset_Angle(4)+Motor_Joint5.Get_Now_Angle()-Robotarm.Get_Joint_Offset_Angle(5))/2.f);
+	Robotarm.Set_Joint_World_Angle_Now(5,(Motor_Joint5.Get_Now_Angle()-Robotarm.Get_Joint_Offset_Angle(5)-Motor_Joint4.Get_Now_Angle()+Robotarm.Get_Joint_Offset_Angle(4))/2.f);
 	
 }
 void Class_Robotarm::Task_Alive_PeriodElapsedCallback()
@@ -1454,12 +1455,12 @@ bool Class_Robotarm::Robotarm_Calibration()
 	 }
 	 if((Arm_Cal_Flag & (1<<4)) == 0)
 	 {
-	 if(Motor_Calibration_Uplift(Arm_Uplift,-100,2000) == true)
+	 if(Motor_Calibration_Uplift(Arm_Uplift,-100,1000) == true)
 	 	{
 	 		Arm_Cal_Flag |= (1<<4);
 	 	}
 	 }
-	Robotarm.Motor_Joint3.Set_Target_Angle(-1.57f);//-90°
+	Robotarm.Motor_Joint3.Set_Target_Angle(40.f*DEG_TO_RAD);//
 	Robotarm.Motor_Joint3.Set_Target_Omega(1);
 	 if(Robotarm.Motor_Joint3.Get_Now_Angle()<-180){DM4310_error_Flag=1;}
 	Robotarm.Motor_Joint3.Set_DM_Control_Status(DM_Motor_Control_Status_ENABLE); 
